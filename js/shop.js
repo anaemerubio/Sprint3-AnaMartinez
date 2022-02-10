@@ -74,6 +74,7 @@ function buy(id) {
     }
 }
 
+
 // Exercise 2
 function cleanCart() {
     // Set the length of the array to 0 (remove all items)
