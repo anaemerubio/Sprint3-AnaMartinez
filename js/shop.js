@@ -86,6 +86,7 @@ function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
     for (let i = 0; i < cartList.length; i++){
         total += cartList[i].price;
+        
     }
 }
 
