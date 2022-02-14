@@ -72,6 +72,11 @@ function buy(id) {
     }
 }
 
+<<<<<<< HEAD
+=======
+
+// Exercise 2
+>>>>>>> 18f28a68de674077f9c54d003c46ae28bd3fa3e7
 function cleanCart() {
     // Borrar todos los elementos de la array
     cartList.length = 0;
@@ -81,6 +86,7 @@ function calculateTotal() {
     // Cada item se suma al anterior hasta que no hay más
     for (let i = 0; i < cartList.length; i++){
         total += cartList[i].price;
+        
     }
     return total;
 }
@@ -99,7 +105,7 @@ function generateCart() {
             item.quantity = 1;
             cart.push(item);
         }
-        // Si lo tenemos aumentamos la cantidad
+        // Ya existe, incrementamos cantidad
         else {
             item.quantity = item.quantity ++ ;
         }
