@@ -3,95 +3,111 @@ var products = [
         id: 1,
         name: 'cooking oil',
         price: 10.5,
-        type: 'grocery'
+        type: 'grocery',
     },
     {
         id: 2,
         name: 'Pasta',
         price: 6.25,
-        type: 'grocery'
+        type: 'grocery',
     },
     {
         id: 3,
         name: 'Instant cupcake mixture',
         price: 5,
-        type: 'grocery'
+        type: 'grocery',
     },
     {
         id: 4,
         name: 'All-in-one',
         price: 260,
-        type: 'beauty'
+        type: 'beauty',
     },
     {
         id: 5,
         name: 'Zero Make-up Kit',
         price: 20.5,
-        type: 'beauty'
+        type: 'beauty',
     },
     {
         id: 6,
         name: 'Lip Tints',
         price: 12.75,
-        type: 'beauty'
+        type: 'beauty',
     },
     {
         id: 7,
         name: 'Lawn Dress',
         price: 15,
-        type: 'clothes'
+        type: 'clothes',
     },
     {
         id: 8,
         name: 'Lawn-Chiffon Combo',
         price: 19.99,
-        type: 'clothes'
+        type: 'clothes',
     },
     {
         id: 9,
         name: 'Toddler Frock',
         price: 9.99,
-        type: 'clothes'
+        type: 'clothes',
     }
 ]
-// Array with products (objects) added directly with push(). Products in this array are repeated.
+
 var cartList = [];
 
-// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 var cart = [];
 
 var total = 0;
 
-// Exercise 1
 function buy(id) {
-    // 1. Loop for to the array products to get the item to add to cart
     for (let i = 0; i < products.length; i++){
+        // Si el id del producto es identico al número de índice del bucle
         if (id === i){
-                // 2. Add found product to the cartList array
+            // Meter producto en cartList
             cartList.push(products[i]);
-            console.log("Cart List tiene estos items " + cartList.length);
+            console.log("Cart List cantidad items: " + cartList.length);
         }
     }
 }
 
-// Exercise 2
 function cleanCart() {
-    // Set the length of the array to 0 (remove all items)
+    // Borrar todos los elementos de la array
     cartList.length = 0;
 }
 
-// Exercise 3
 function calculateTotal() {
-    // Calculate total price of the cart using the "cartList" array
+    // Cada item se suma al anterior hasta que no hay más
     for (let i = 0; i < cartList.length; i++){
         total += cartList[i].price;
     }
+    return total;
 }
 
-// Exercise 4
 function generateCart() {
-    // Using the "cartlist" array that contains all the items in the shopping cart, 
-    // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+
+    // Comprobar si el producto está en la array
+    for (i = 0; i < cartList.length; i++) {
+        // variable product igual a item del cartList donde estemos
+        var product = cartList[i];
+        // Devuelve valor del primer elemento del array (En este caso name)
+        var item = cart.find( producteCart => producteCart.name === product.name);
+        // Si no existe lo añadimos
+        if (item == null) {
+            item = product;
+            item.quantity = 1;
+            cart.push(item);
+        }
+        // Si lo tenemos aumentamos la cantidad
+        else {
+            item.quantity = item.quantity ++ ;
+        }
+        item.calculateTotal = item.price * item.quantity ;
+        //
+        /* item.applyPromotionsCart = 0; */
+    }
+
 }
 
 // Exercise 5
@@ -99,6 +115,7 @@ function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
 }
 
+/* ***************************************************************************************************************************** */
 
 // ** Nivell II **
 
