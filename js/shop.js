@@ -59,86 +59,126 @@ var cartList = [];
 
 var cart = [];
 
+var subtotal = {
+    grocery: {
+        value: 0, 
+        discount: 0
+    },
+    beauty: {
+        value: 0, 
+        discount: 0
+    },
+    clothes: {
+        value: 0, 
+        discount: 0
+    },
+};
+
 var total = 0;
 
 function buy(id) {
+
     for (let i = 0; i < products.length; i++){
-        // Si el id del producto es identico al número de índice del bucle
         if (id === i){
-            // Meter producto en cartList
-            cartList.push(products[i]);
-            console.log("Cart List cantidad items: " + cartList.length);
+            cartList.push(products[i-1]);
         }
     }
+
 }
 
-<<<<<<< HEAD
-=======
-
-// Exercise 2
->>>>>>> 18f28a68de674077f9c54d003c46ae28bd3fa3e7
 function cleanCart() {
-    // Borrar todos los elementos de la array
     cartList.length = 0;
 }
 
-function calculateTotal() {
-    // Cada item se suma al anterior hasta que no hay más
-    for (let i = 0; i < cartList.length; i++){
-        total += cartList[i].price;
-        
-    }
-    return total;
-}
+function generateCart(cartList) {
 
-function generateCart() {
-
-    // Comprobar si el producto está en la array
     for (i = 0; i < cartList.length; i++) {
-        // variable product igual a item del cartList donde estemos
-        var product = cartList[i];
-        // Devuelve valor del primer elemento del array (En este caso name)
-        var item = cart.find( producteCart => producteCart.name === product.name);
-        // Si no existe lo añadimos
+
+        let product = cartList[i];
+        let item = cart.find(productCart => productCart.name === product.name);
+
         if (item == null) {
             item = product;
             item.quantity = 1;
             cart.push(item);
+        } else {
+            item.quantity ++;
         }
-        // Ya existe, incrementamos cantidad
-        else {
-            item.quantity = item.quantity ++ ;
+
+        item.calculateTotal = item.price * item.quantity;
+        item.subtotalWithDiscount = 0;
+
+    }
+}
+
+function applyPromotionsCart(cart) {
+
+    for (let item of cart) {
+
+        if ((item.id == 1) && (item.quantity >= 3)) {
+
+            item.subtotalWithDiscount = ((item.price) - (item.price * 0.05)) * item.quantity;
+
+        } else if ((item.id == 3) && (item.quantity >= 10)) {
+
+            item.subtotalWithDiscount = ((item.price) - (item.price * 0.33)) * item.quantity;
+
         }
-        item.calculateTotal = item.price * item.quantity ;
-        //
-        /* item.applyPromotionsCart = 0; */
     }
 
 }
 
-// Exercise 5
-function applyPromotionsCart() {
-    // Apply promotions to each item in the array "cart"
+function calculateSubtotals() {
+
+    for (let key in subtotal) {
+        subtotal[key].value = 0;
+    }
+
+    for (let item of cart) {
+
+        switch(item.type) {
+
+            case "grocery":
+                subtotal.grocery.value += item.subtotalWithDiscount;
+                break;
+
+            case "beauty":
+                subtotal.beauty.value += item.subtotalWithDiscount;
+                break;
+
+            case "clothes":
+                subtotal.clothes.value += item.subtotalWithDiscount;
+                break;
+
+        }
+
+    }
+    
 }
 
-/* ***************************************************************************************************************************** */
+function calculateTotal() {
 
-// ** Nivell II **
+    var total = 0;
 
-// Exercise 7
+    for (let i = 0; i < cartList.length; i++){
+        total += cartList[i].price;
+    }
+
+    return total; 
+
+}
+
 function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 }
 
-// Exercise 8
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 }
 
-// Exercise 9
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
