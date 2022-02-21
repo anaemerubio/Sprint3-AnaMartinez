@@ -1,16 +1,18 @@
 var form = document.querySelector("form"); 
 
-var password = document.querySelector(".password");
-var phone = document.querySelector(".phone");
 var firstName = document.querySelector(".name");
 var lastName = document.getElementById("lastName");
+var phone = document.querySelector(".phone");
+var password = document.querySelector(".password");
 var email = document.getElementById("email");
 var adress = document.getElementById("adress");
 
-var errorPassword = document.getElementById("errorPassword");
-var errorName = document.getElementById("errorName");  
-var errorPhone = document.getElementById("errorPhone");  
-var errorGeneral = document.getElementById("feedbackError");
+var errorName = document.getElementById('errorName');  
+var errorLastName = document.querySelector('errorLastName');
+var errorEmail = document.getElementById('errorEmail');
+var errorPassword = document.getElementById('errorPassword');
+var errorAdress = document.getElementById('errorAdress');
+var errorPhone = document.getElementById('errorPhone');  
 
 function validate() {
 
@@ -46,8 +48,8 @@ function validate() {
         } else if (!(/^[a-zA-Z]+$/.test(lastName.value))) {
 
             event.preventDefault();
-            var errorName = lastName.nextElementSibling;
-            errorName.innerHTML = "Last name can not have numbers.";
+            var errorLastName = lastName.nextElementSibling;
+            errorLastName.innerHTML = "Last name can not have numbers.";
             lastName.classList.add("is-invalid");
 
         } else {
@@ -123,7 +125,7 @@ function validate() {
             adress.classList.remove("is-invalid");
         }
 
-    }, {once: true});
+    });
     
 }
 
