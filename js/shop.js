@@ -168,17 +168,12 @@ function calculateTotal() {
 
 }
 
-function addToCart(id) {
-    // Refactor previous code in order to simplify it 
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+/* function addToCart(id) {
 }
 
 function removeFromCart(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
 }
 
 function printCart() {
-    // Fill the shopping cart modal manipulating the shopping cart dom
 }
+ */
